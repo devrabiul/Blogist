@@ -1,0 +1,9 @@
+mixin pagination(to, current)
+  .pagination
+    - var n = 1;
+    ul
+      while n < to
+        li(class=(n === current ? 'active' : 'pagination__page-number'))
+          a(href="javascript:void(0)")= n++ 
+      li
+        a(href="javascript:void(0)").next >

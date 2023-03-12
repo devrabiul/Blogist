@@ -1,0 +1,51 @@
+include ../base/variable.pug
+-  function setNavItemClass(ref) { return ref === page ? 'nav-item active' : 'nav-item'};
+header(class=(theme === 'blue' ? '-theme--blue' :  theme === 'violet' ? '-theme--violet': theme === 'orange' ? '-theme--orange' : 'theme-default'))
+  #search-box
+    .container
+      form(action="/" method="POST")
+        input(type="text" placeholder="Searching for news" name="search")
+        button
+          i.fas.fa-arrow-right
+  .container
+    .header-wrapper
+      a.header__logo(href="index.html")
+        img(src="./assets/images/logo.png", alt="Logo")
+      nav
+        ul
+          li(class=setNavItemClass('home'))
+            a(href=HOMEPAGES.HOMEPAGE1) Home
+            ul.dropdown-menu
+              each src, name in HOMEPAGES
+                li
+                  a(href=src) #{name}
+          li(class=setNavItemClass('blog'))
+            a(href=BLOGS.CATEGORY_GRID) Blog
+            ul.dropdown-menu
+              each src, name in BLOGS
+                li
+                  a(href=src) #{name.replace(/_/g, " ")}
+          li(class=setNavItemClass('pages'))
+            a(href='#') Pages
+            ul.dropdown-menu
+              each src, name in PAGES
+                li
+                  a(href=src) #{name.replace(/_/g, " ")}
+          li(class=setNavItemClass('about'))
+            a(href=PAGES.ABOUT) About
+          li(class=setNavItemClass('contact'))
+            a(href=PAGES.CONTACT) Contact
+      .header__icon-group
+        a(href="#")#search
+          i.fas.fa-search
+        .social
+          a(href="#")
+            i.fab.fa-facebook-f
+          a(href="#")
+            i.fab.fa-twitter
+          a(href="#")
+            i.fab.fa-instagram
+          a(href="#")
+            i.fab.fa-dribbble
+          a#mobile-menu-controller(href="#")
+            i.fas.fa-bars

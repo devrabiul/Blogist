@@ -1,0 +1,70 @@
+extends base/layout.pug
+block title
+  title Cart
+block header
+  - var page = 'pages'
+  - var noContentPadding = true
+  include components/header.pug
+block content
+  .container
+    +breadcrumb(["Blog", "Cart"])
+    .cart
+      .cart__table
+        table
+          colgroup
+            col(span='1', style='width: 50%;')
+            col(span='1', style='width: 15%;')
+            col(span='1', style='width: 15%;')
+            col(span='1', style='width: 15%;')
+            col(span='1', style='width: 5%;')
+          thead
+            tr
+              th PRODUCT
+              th PRICE
+              th QUATILITY
+              th TOTAL
+              th 
+          tbody
+            each data, index in CART
+              tr
+                td
+                  .cart-product
+                    img(src=`assets/images/pages/cart/${index + 1}.png`, alt=data.name)
+                    .cart-product__content
+                      h5= data.name
+                      .star(data-number=data.rate)
+                td= `$ ${data.price}`
+                td
+                  include components/quanity_controller.pug
+                td= `$ ${data.price}`
+                td
+                  a(href="javascript:void(0)")
+                    i.fas.fa-times
+      .cart__footer
+        .cart__footer__actions
+          a.btn.-light-overlay(href=PAGES.SHOP) CONTINUE SHOPPING
+          a.btn.-light-overlay(href=PAGES.SHOP) Upadte cart
+      .cart__total
+        .row.justify-content-between
+          .col-12.col-md-8.col-lg-7
+            .cart__total__discount
+              form(action="/")
+                h3 DISCOUNT CODES
+                input(type="text" name="discount" placeholder="Enter your coupon code")
+                button.btn Apply
+          .col-12.col-md-4
+            .cart__total__content
+              h3 Cart total
+              .total__row
+                h5 Subtotal
+                h5 $ 152.0
+              .total__row
+                h5 Subtotal
+                h5 $ 152.0
+              a(href=PAGES.CHECKOUT).btn PPROCEED TO CHECKOUT
+  .container
+    include components/subcribe_bar.pug          
+  .container
+    include components/instagrams.pug 
+block footer
+  include components/footer.pug

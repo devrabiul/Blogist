@@ -1,0 +1,52 @@
+extends base/layout.pug
+block title
+  title Contact us
+block header
+  - var page = 'pages'
+  - var noContentPadding = true
+  include components/header.pug
+block content
+  .container
+    +breadcrumb(["Feature", "Contact us"])
+    .contact-us
+      .row
+        .col-12.col-md-6
+          .contact-us__info
+            h3.contact-title GET IN TOUCH
+            p.contact-description Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. 
+            .contact-method
+              .contact-method__item
+                i.fas.fa-map-marker-alt
+                p 5 South Main Street Los Angeles, ZZ-96110 USA
+              .contact-method__item
+                i.fas.fa-mobile-alt
+                p 125-711-811   |   125-668-886
+              .contact-method__item
+                i.fas.fa-headphones-alt
+                p Support.hosting@gmail.com
+          .contact-us__social
+            h3.contact-title GET IN TOUCH
+            .social-block
+              a(href="#")
+                i.fab.fa-facebook-f
+              a(href="#")
+                i.fab.fa-twitter
+              a(href="#")
+                i.fab.fa-instagram
+              a(href="#")
+                i.fab.fa-dribbble
+        .col-12.col-md-6
+          .contact-us__form
+            h3.contact-title LEAVE A MESSAGE
+            form(action="/")
+              input(type="text" placeholder="Name" name="name")
+              input(type="email" placeholder="Email" name="email")
+              input(type="text" placeholder="Website" name="website")
+              textarea(name="message" cols="30" rows="8" placeholder="Message")
+              button.btn.-normal Send message
+  .container
+    include components/subcribe_bar.pug          
+  .container
+    include components/instagrams.pug 
+block footer
+  include components/footer.pug

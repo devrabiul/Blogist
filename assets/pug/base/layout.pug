@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+html(lang="en")
+	head
+		meta(charset="UTF-8")
+		meta(name="viewport", content="width=device-width, initial-scale=1.0, user-scalable=no")
+		meta(http-equiv="X-UA-Compatible", content="ie=edge")
+		include variable.pug
+		include ../mixins/post_card_default.pug
+		include ../mixins/post_card_quote.pug
+		include ../mixins/tag.pug
+		include ../mixins/category.pug
+		include ../mixins/news_block_header.pug
+		include ../mixins/trending_post.pug
+		include ../mixins/pagination.pug
+		include ../mixins/product.pug
+		include ../mixins/breadcrumb.pug
+		block title
+			title Document
+		include link.pug
+	body
+		#load
+			.load__content
+				.load__icon
+					img(src="assets/images/icons/load.gif", alt="Loading icon")
+		block header
+		#content(class=(noContentPadding && 'no-pd'))
+			block content
+				h1 Happing coding
+		block footer
+		include script.pug
+		

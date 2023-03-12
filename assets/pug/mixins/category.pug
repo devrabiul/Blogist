@@ -1,0 +1,7 @@
+include ../base/variable.pug
+mixin category(name,  quantity, image, additionalClass = null)
+  a(href=BLOGS.BLOG_CATEGORY_GRID class=`category ${additionalClass} ${theme === 'blue' ? '-theme--blue' :  theme === 'violet' ? '-theme--violet' : ''}`)
+    .category__background(style=`background-image: url(${image})`)
+    h5.title= name
+    h5.quantity= quantity
+    

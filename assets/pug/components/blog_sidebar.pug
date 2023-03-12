@@ -1,0 +1,14 @@
+include ../mixins/category.pug
+include ../mixins/trending_post.pug
+.blog-sidebar
+  .blog-sidebar-section.-category
+    .center-line-title 
+      h5 Categories
+    each category in CATEGORIES.slice(0,4)
+      +category(category.title, category.quantity, category.bg, '-bar')
+  .blog-sidebar-section.-trending-post
+    .center-line-title 
+      h5 Trending post
+    each post in TOP_POST
+      +trending_post(post.title, post.category, post.image, post.date, post.rank)
+  include subcribe_box.pug

@@ -1,0 +1,48 @@
+extends base/layout.pug
+block title
+  title Post Standard
+block header
+  - var page = 'blog'
+  include components/header.pug
+block content
+  .post
+    .container
+      .post-standard
+        .post-standard__banner
+          .post-standard__banner__image
+            img(src="assets/images/post_detail/standard/banner.png", alt="Post banner image")
+          .post-standard__banner__content
+            each post in POST_DATA_REGULAR.slice(1,2)
+              +post_card_default(post.image, post.category, post.title, post.date, post.comment, '-center', 'noImage')
+        
+        .row
+          .col-12.col-md-4.order-md-2
+            include ./components/blog_sidebar.pug
+          .col-12.col-md-8.order-md-1
+            .post-standard__content
+              #post-share
+                h5 Share:
+                .social-media
+                  a(href="#" style="background-color: #075ec8")
+                    i.fab.fa-facebook-f
+                  a(href="#" style="background-color: #40c4ff")
+                    i.fab.fa-twitter
+                  a(href="#" style="background-image: linear-gradient(to top, #f2a937, #d92e73, #9937b7, #4a66d3), linear-gradient(to top, #af00e1, #ff9e35)")
+                    i.fab.fa-instagram
+                  a(href="#" style="background-color: #ff0000")
+                    i.fab.fa-youtube
+              p.paragraph Sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliqui.paragraphex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit.
+              p.paragraph What makes a successful email or email campaign? One of the major elements in the design and layout that draws people in and grows your click-through rate. Today, I’ll be showing you ten examples of winning email design and how to make your own velit esse cillum dolore.
+              each post in POST_DATA_QUOTE.slice(0,1)
+                +post_card_quote(post.quote, post.author, '-border')
+              p.paragraph Occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate.
+              img.image.left(src="assets/images/post_detail/standard/1.png", alt="Post image")
+              p.paragraph If they’re still in the awareness stages of getting to know the brand, then they’ll most likely keep reading more on what Tock has to offer. They’re using one email design to speak to two types of readers both in the first stage of their welcome email.You can also change an email design’s color based on new product, season or to match a marketing campaign’s new look and feel.
+              p.paragraph Design: The email imitates a product marketing funnel system, bringing the reader towards each CTA with “Awareness, Consideration, and Action” as the main stages. Harry’s used a color block design to guide reader through each,
+              p.paragraph Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+              p.paragraph Non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.
+              include components/post_footer.pug
+    .container
+      include components/instagrams.pug 
+block footer
+  include components/footer.pug

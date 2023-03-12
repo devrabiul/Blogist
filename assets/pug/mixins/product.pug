@@ -1,0 +1,13 @@
+include ../base/variable.pug
+mixin product(name, image, star, price)
+  .product
+    a.product__image(href=PAGES.PRODUCT_DETAIL)
+      img(src=image, alt=name)
+      span.btn.-normal Add to cart
+    .product__content
+      .product__content__left
+        a(href=PAGES.PRODUCT_DETAIL)= name
+        .star(data-number=star)
+      .product__content__right
+        h3= `$ ${price}`
+    

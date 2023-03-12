@@ -1,0 +1,38 @@
+extends base/layout.pug
+block title
+ title Homepage 2
+block header
+ - var page = 'home'
+ include components/header.pug
+block content
+ .container
+  .blog-with-sidebar
+   .row
+    .col-12.col-md-5.col-lg-4.order-md-2
+     include ./components/blog_sidebar.pug
+    .col-12.col-md-7.col-lg-8.order-md-1
+     .row
+      each post in POST_DATA_REGULAR.slice(0,1)
+       .col-sm-6.col-md-12
+        +post_card_default(post.image, post.category, post.title, post.date, post.comment, '-full -center', 'full')
+      each post in POST_DATA_REGULAR.slice(2,3)
+       .col-sm-6.col-md-12
+        +post_card_default(post.image, post.category, post.title, post.date, post.comment, '-full -audio -center', 'full-audio')
+      each post in POST_DATA_REGULAR.slice(3,4)
+       .col-sm-6.col-md-12
+        +post_card_default(post.image, post.category, post.title, post.date, post.comment, '-full -video -center', 'full-video')
+      each post in POST_DATA_QUOTE.slice(0,1)
+        .col-sm-6.col-md-12
+          +post_card_quote(post.quote, post.author)
+      each post in POST_DATA_REGULAR.slice(10,11)
+       .col-sm-6.col-md-12
+        +post_card_default(post.image, post.category, post.title, post.date, post.comment, '-full -center', 'full-splited-slide')
+      each post in POST_DATA_SLIDE.slice(2,3)
+       .col-sm-6.col-md-12
+        +post_card_default(post.image, post.category, post.title, post.date, post.comment, '-full -video -center', 'full-slide')
+      .col-12
+        .center
+          a.btn.-normal.load-more-btn(href="#") Load more posts
+  include components/instagrams.pug 
+block footer
+ include components/footer.pug

@@ -1,0 +1,8 @@
+div(class=(theme === 'blue' ? 'instagrams -theme--blue' :  theme === 'violet' ? 'instagrams -theme--violet': 'instagrams'))
+  .instagrams-container
+    each newsSrc in ["assets/images/instagram/1.png", "assets/images/instagram/2.png", "assets/images/instagram/3.png", "assets/images/instagram/4.png", "assets/images/instagram/5.png", "assets/images/instagram/1.png", "assets/images/instagram/3.png", "assets/images/instagram/4.png"]
+      a(href="https://www.instagram.com/").instagrams-item
+        img(src=newsSrc, alt="Instagram image")
+        .instagrams-item__content
+          i.fab.fa-instagram
+          p @ Gtute_News

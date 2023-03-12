@@ -1,0 +1,10 @@
+mixin news_block_header(tabItem = ['all', 'tab 1', 'tab 2'], title = 'Add some title')
+  .news-block__header
+    .header__controller__title
+      .center-line-title.-large.-mb-0
+          h5= title
+    .header__controller
+      .header__controller__tab
+        each tab in tabItem
+          a(href="#" title=tab class=(tab === 'all' && 'active') data-for=tab).tab-item= tab
+      .header__controller__slider-control

@@ -1,0 +1,122 @@
+extends base/layout.pug
+block title
+  title Shop Detail
+block header
+  - var page = 'pages'
+  - var noContentPadding = true
+  include components/header.pug
+block content
+  .container
+    +breadcrumb(["Feature", "Product detail"])
+    .shop-detail
+      .row
+        .col-12.col-md-6
+          .shop-detail__image
+            .slider.slider-single
+              .slider-single__item
+                img(src="assets/images/pages/shop/products/1.png", alt="Product image")
+              .slider-single__item
+                img(src="assets/images/pages/shop/products/2.png", alt="Product image")
+              .slider-single__item
+                img(src="assets/images/pages/shop/products/3.png", alt="Product image")
+              .slider-single__item
+                img(src="assets/images/pages/shop/products/4.png", alt="Product image")
+            .slider.slider-nav
+              .slider-nav__item
+                img(src="assets/images/pages/shop/products/1.png", alt="Product image")
+              .slider-nav__item
+                img(src="assets/images/pages/shop/products/2.png", alt="Product image")
+              .slider-nav__item
+                img(src="assets/images/pages/shop/products/3.png", alt="Product image")
+              .slider-nav__item
+                img(src="assets/images/pages/shop/products/4.png", alt="Product image")
+        .col-12.col-md-6
+          .shop-detail__content
+            .shop-detail__content__top
+              h1 Bring Me Dead Flowers
+              p.brand Brand: SKMEIMore Men Watches from Bryan Butler
+              .rate
+                .star(data-number=4)
+                span (138 reviews)
+              .price
+                h3 $ 75.0
+                span.discount $ 83.0
+              p.description Nemo enim ipsam voluptatem quia aspernatur aut odit aut loret fugit, sed quia consequuntur magni lores eos qui ratione voluptatem sequi nesciunt.
+              .product-controller
+                .quantity
+                  span Quantity:
+                  include components/quanity_controller.pug
+                a.btn.-normal(href="#") Add to cart
+                a.btn.-gray(href="#")
+                  i.far.fa-heart
+                a.btn.-gray(href="#")
+                  i.far.fa-sliders-h
+            .shop-detail__content__bottom
+              .type-block
+                p.type-name Sku
+                p.type-detail GP web interfaces 
+              .type-block
+                p.type-name Categories
+                p.type-detail Graphic
+              .type-block
+                p.type-name Promotions:
+                p.type-detail Free shipping
+              .type-block
+                p.type-name Tags:
+                p.type-detail #character   #design   #illustration   #product   #robot    #ui   #webdesign
+        .col-12
+          .shop-detail__tab
+            .tab
+              .tab-header
+                ul
+                  li
+                    a.active(href="" data-for="description") Description
+                  li
+                    a(href="" data-for="specification") Specification
+                  li
+                    a(href="" data-for="reviews") Reviews ( 2 )
+              .tab-content
+                .tab-content__item(data-stand="description")
+                  p Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut loret fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt loret. Neque porro lorem quisquam est, qui dolorem ipsum quia dolor si. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut loret fugit, sed quia ipsu consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Nulla consequat massa quis enim.
+                  p Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.
+                  p Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Fusce porttitor metus eget lectus consequat, sit amet feugiat magna vulputate. Phasellus iaculis tellus augue, at ultrices lacus efficitur a. Mauris a nibh erat. In sed massa sed erat consectetur convallis vel vitae felis. Vivamus in tempus erat. Cras porta nisi sit amet leo dictum, non suscipit neque tincidunt. Ut et enim ligula.
+                .tab-content__item(data-stand="specification")
+                  .type-block
+                    p.type-name Sku
+                    p.type-detail GP web interfaces 
+                  .type-block
+                    p.type-name Categories
+                    p.type-detail Graphic
+                  .type-block
+                    p.type-name Promotions:
+                    p.type-detail Free shipping
+                  .type-block
+                    p.type-name Tags:
+                    p.type-detail #character   #design   #illustration   #product   #robot    #ui   #webdesign
+                .tab-content__item(data-stand="reviews")
+                  .row
+                    .col-12.col-sm-6
+                      .review-block
+                        .review-block__avatar 
+                          img(src="assets/images/post_detail/avatar/1.png", alt="Reviewer")
+                        .review-block__content
+                          h5 Jonh Majangia
+                          p Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida.
+                          .star(data-number=4)
+                    .col-12.col-sm-6
+                      .review-block
+                        .review-block__avatar 
+                          img(src="assets/images/post_detail/avatar/1.png", alt="Reviewer")
+                        .review-block__content
+                          h5 Jonh Majangia
+                          p Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida.
+                          .star(data-number=4)
+        .col-12
+          .shop-detail__slide
+            h3 Related post
+            .related-post-slide
+              each product in PRODUCTS.slice(0,4)
+                .related-post-slide__item
+                  + product(product.name, product.image, product.star, product.price)
+block footer
+  include components/footer.pug

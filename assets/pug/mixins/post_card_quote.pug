@@ -1,0 +1,7 @@
+include ../base/variable.pug
+mixin post_card_quote(quote, author, additionalClass = '' ,type = 'default')
+  div(class=`post-card-quote ${additionalClass}`)
+    .qoute__icon
+      i.fas.fa-quote-left
+    p.quote__content= quote
+    h5.quote__author= `_${author}_`

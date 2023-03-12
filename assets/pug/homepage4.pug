@@ -1,0 +1,25 @@
+extends base/layout.pug
+block title
+  title Homepage 4
+block header
+  - var page = 'home'
+  include components/header.pug
+block content
+  .container
+    .blog-imageless
+      .row
+        .col-12
+          each post in POST_DATA_REGULAR.slice(0,1)
+            +post_card_default('assets/images/posts/banner-post.png', post.category, post.title, post.date, post.comment, '-center -banner -inner-text', 'fillInfo')
+        .col-12.col-lg-6
+          each post in POST_DATA_REGULAR.slice(0,4)
+            +post_card_default('assets/images/posts/banner-post.png', post.category, post.title, post.date, post.comment, '-image-less', 'imageLess-fillInfo')
+        .col-12.col-lg-6
+          each post in POST_DATA_REGULAR.slice(5,9)
+            +post_card_default('assets/images/posts/banner-post.png', post.category, post.title, post.date, post.comment, '-image-less', 'imageLess-fillInfo')
+        .col-12
+          .center
+            a.btn.-normal.load-more-btn(href="#") Load more posts
+    include components/instagrams.pug
+block footer
+  include components/footer.pug

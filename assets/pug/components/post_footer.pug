@@ -1,0 +1,110 @@
+include ../mixins/tag.pug
+include ../base/variable.pug
+include ../mixins/post_card_default.pug
+.post-footer
+  .post-footer__tags.center
+    .tags-group
+      each tag in ['Gutenews', 'Lifestyle', 'Fashion', 'Technology', 'Food']
+        +tag(tag)
+  .post-footer__author
+    .author__avatar
+      img(src="assets/images/post_detail/author.png", alt="Author avatar")
+    .author__info
+      h5 Lena Mollein
+      p Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse vel facilisis. 
+      .social-media
+        a(href="#")
+          i.fab.fa-facebook-f
+        a(href="#")
+          i.fab.fa-twitter
+        a(href="#")
+          i.fab.fa-instagram
+        a(href="#")
+          i.fab.fa-dribbble
+  .post-footer__related
+    .post-footer__related__item.-prev
+      a(href=BLOGS.POST_STANDARD) 
+        i.fas.fa-chevron-left
+        |Previous posts
+      .post-footer__related__item__content
+        each post in POST_DATA_REGULAR.slice(1,2)
+          img(src=post.image, alt="Relate news image")
+          +post_card_default(post.image, post.category, post.title, post.date, post.comment, '', 'noInfo-noImage')
+    .post-footer__related__item.-next
+      a(href=BLOGS.POST_STANDARD) 
+        |Next posts
+        i.fas.fa-chevron-right
+      .post-footer__related__item__content
+        each post in POST_DATA_REGULAR.slice(2,3)
+          +post_card_default(post.image, post.category, post.title, post.date, post.comment, '-right', 'noInfo-noImage')
+          img(src=post.image, alt="Relate news image")
+  .post-footer__comment
+    h3.comment-title 
+      span 3 comment
+    .post-footer__comment__detail
+      .comment__item
+        .comment__item__avatar
+          img(src="assets/images/post_detail/avatar/1.png", alt="Author avatar")
+        .comment__item__content
+          .comment__item__content__header
+            h5 Brandon Kelley
+            .data
+              p
+                i.far.fa-clock
+                | Aug,15, 2019
+              p
+                i.far.fa-heart
+                | 12
+              p
+                i.far.fa-share-square
+                | 1
+          p Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore aliqua. Quis ipsum suspendisse ultrices gravida lacus vel facilisis.
+        .comment__item__reply
+          .comment__item
+            .comment__item__avatar
+              img(src="assets/images/post_detail/avatar/2.png", alt="Author avatar")
+            .comment__item__content
+              .comment__item__content__header
+                h5 Brandon Kelley
+                .data
+                  p
+                    i.far.fa-clock
+                    | Aug,15, 2019
+                  p
+                    i.far.fa-heart
+                    | 12
+                  p
+                    i.far.fa-share-square
+                    | 1
+              p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quis ipsum suspendisse ultrices gravida lacus vel facilisis, sed do eiusmod tempor.
+      .comment__item
+        .comment__item__avatar
+          img(src="assets/images/post_detail/avatar/3.png", alt="Author avatar")
+        .comment__item__content
+          .comment__item__content__header
+            h5 Brandon Kelley
+            .data
+              p
+                i.far.fa-clock
+                | Aug,15, 2019
+              p
+                i.far.fa-heart
+                | 12
+              p
+                i.far.fa-share-square
+                | 1
+          p Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore aliqua. Quis ipsum suspendisse ultrices gravida lacus vel facilisis.
+    h3.comment-title 
+      span Leave a comment
+    .post-footer__comment__form
+      form(action="/")
+        .row
+          .col-12.col-sm-4
+            input(type="text" placeholder="Name" name="name")
+          .col-12.col-sm-4
+            input(type="email"  placeholder="Email" name="email")
+          .col-12.col-sm-4
+            input(type="text"  placeholder="Webiste" name="website")
+        textarea(cols="30" rows="5" placeholder="Messages" name="message")
+      .center
+        button.btn.-normal Submit

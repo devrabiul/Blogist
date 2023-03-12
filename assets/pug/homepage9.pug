@@ -1,0 +1,118 @@
+extends base/layout.pug
+block title
+  title Homepage 9
+block header
+  - var page = 'home'
+  - var noContentPadding = true
+  - var theme = 'violet'
+  include components/header.pug
+block content
+  .blog-flower
+    .container-full
+      .blog-flower__slide__wrapper
+        .blog-flower__slide
+          each post, index in POST_DATA_REGULAR.slice(0,4)
+            .blog-flower__slide__item
+              +post_card_default(`assets/images/posts/flower/slide/${index + 1}.png`, post.category, post.title, post.date, post.comment, '-box-text -center -theme--violet', 'fillInfo')
+    .container
+      .blog-section.blog-flower__section
+        .row
+          .col-12.col-md-5.col-lg-4.order-md-2
+            .blog-sidebar
+              .blog-sidebar-section
+                include components/subcribe_box.pug
+              .blog-sidebar-section
+                .center-line-title 
+                  h5 Social media
+                .social-block
+                  a(href="#")
+                    i.fab.fa-facebook-f
+                  a(href="#")
+                    i.fab.fa-twitter
+                  a(href="#")
+                    i.fab.fa-instagram
+                  a(href="#")
+                    i.fab.fa-dribbble
+              .blog-sidebar-section
+                .center-line-title 
+                  h5 Feature post
+                each post in POST_DATA_REGULAR.slice(0,3)
+                  +post_card_default(post.image, post.category, post.title, post.date, post.comment, '-tiny -theme--violet', 'tiny')
+              .blog-sidebar-section.-category
+                .center-line-title 
+                  h5 Categories
+                .category-block
+                  - let a = 1
+                  each category in CATEGORIES.slice(0,4)
+                    +category(category.title, category.quantity, `./assets/images/backgrounds/flower/${a++}.png`, '-square') 
+          .col-12.col-md-7.col-lg-8.order-md-1
+            .news-block.-theme--violet
+              +news_block_header(['all', 'recipes', 'vegan', 'desserts', 'drinks'], 'Lastest post')
+              .news-block__tab
+                each item in ['all', 'recipes', 'vegan', 'desserts', 'drinks']
+                  div(data-tab-name=item class=(item === 'all' ? 'active news-block__tab__item' : 'news-block__tab__item'))
+                    .news-block__content.-default
+                      each item, index in [1, 2, 3]
+                        .news-block__content__slide
+                          .row
+                            .col-12
+                              each post in POST_DATA_REGULAR.slice(0, 1)
+                                +post_card_default(`assets/images/posts/flower/lastest/big-1.png`, post.category, post.title, post.date, post.comment, '-theme--violet')
+                            .col-12
+                              .row
+                                - let b = 1
+                                each post in POST_DATA_REGULAR.slice(1 + index, 3 + index)
+                                  .col-12.col-sm-6
+                                    +post_card_default(`assets/images/posts/flower/lastest/${b++}.png`, post.category, post.title, post.date, post.comment, '-small -theme--violet')
+                            .col-12
+                              each post in POST_DATA_REGULAR.slice(0, 1)
+                                +post_card_default(`assets/images/posts/flower/lastest/big-2.png`, post.category, post.title, post.date, post.comment, '-theme--violet')
+                            .col-12
+                              .row
+                                - let d = 3
+                                each post in POST_DATA_REGULAR.slice(1 + index, 3 + index)
+                                  .col-12.col-sm-6
+                                    +post_card_default(`assets/images/posts/flower/lastest/${d++}.png`, post.category, post.title, post.date, post.comment, '-small -theme--violet')
+    .blog-section.blog-flower__section.-video
+      .container
+        .news-block.-theme--violet
+          +news_block_header([], 'Latest videos')
+          .news-block__tab
+            each item in ['all']
+              div(data-tab-name=item class=(item === 'all' ? 'active news-block__tab__item' : 'news-block__tab__item'))
+                .news-block__content-multi.-default
+                  each video in VIDEO_LIST.slice(0, 5)
+                    .news-block__content__slide
+                      .video-container
+                        a(href=BLOGS.POST_STANDARD)= video.title
+                        .video-9x16.plyr__video-embed
+                          iframe(src=`https://player.vimeo.com/video/${video.src}`, style="position:absolute;top:0;left:0;width:100%;height:100%;", allowfullscreen='')
+    .container
+      .blog-section.blog-flower__section.-trending
+        .news-block.-theme--violet
+          +news_block_header(['all', 'recipes', 'vegan', 'desserts', 'drinks'], 'Trending')
+          .news-block__tab
+            each item in ['all', 'recipes', 'vegan', 'desserts', 'drinks']
+              div(data-tab-name=item class=(item === 'all' ? 'active news-block__tab__item' : 'news-block__tab__item'))
+                .news-block__content.-default
+                  each item, index in [1, 2, 3]
+                    .news-block__content__slide
+                      .row
+                        .col-12.col-md-6.col-md-12.col-lg-6.order-lg-2
+                          each post in POST_DATA_REGULAR.slice(0, 1)
+                            +post_card_default('./assets/images/posts/flower/trending/big.png', post.category, post.title, post.date, post.comment, '-large -center -theme--violet', '-full-noBtn')
+                        .col-12.col-sm-6.col-md-6.col-lg-3.order-md-1
+                          .row
+                            - let a = 1
+                            each post in POST_DATA_REGULAR.slice(1 + index, 3 + index)
+                              .col-12
+                                +post_card_default(`./assets/images/posts/flower/trending/${a++}.png`, post.category, post.title, post.date, post.comment, '-small -center -theme--violet')
+                        .col-12.col-sm-6.col-md-6.col-lg-3.order-md-3
+                          .row
+                            - let b = 3
+                            each post in POST_DATA_REGULAR.slice(1 + index, 3 + index)
+                              .col-12
+                                +post_card_default(`./assets/images/posts/flower/trending/${b++}.png`, post.category, post.title, post.date, post.comment, '-small -center -theme--violet')
+  include components/instagrams.pug
+block footer
+  include components/footer.pug

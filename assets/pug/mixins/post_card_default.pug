@@ -1,0 +1,51 @@
+- function getIcon(category){switch(category.toLowerCase()){case 'graphic':return'category-icon-graphic';case 'technology':return'category-icon-technology';case 'typography':return'category-icon-typography';default:return'category-icon-desgin'}}
+mixin post_card_default(imgSource, category, title, time, comment, additionalClass = null, type = 'default')
+  div(class=`post-card ${additionalClass}`)
+    if type == 'full' || type == 'default'
+      a(href=BLOGS.POST_STANDARD).card__cover
+        img(src=imgSource, alt=title)
+    else if type == 'slide' || type == 'full-slide' || type.includes('onlySlide')
+      .card__cover.-slide
+        each val in imgSource
+          .card__cover__slide-item
+            img(src=val, alt=title)
+    else if type.includes('splited-slide')
+      .card__cover.-slide-splited
+        each val in imgSource
+          .card__cover__slide-item
+            img(src=val, alt=title)
+    else if type.includes('audio')
+      audio#audio-player.audio(controls='')
+        source(src='assets/media/song.mp3', type='audio/mp3')
+    else if type.includes('video') 
+      #video-player.plyr__video-embed.video
+        iframe(src='https://player.vimeo.com/video/76979871?loop=false&byline=false&portrait=false&title=false&speed=true&transparent=0&gesture=media', allowfullscreen='')
+    else if type.includes('imageLess')
+      .category-icon
+        img(src=`assets/images/icons/${getIcon(category)}.png`, alt=category)
+    else if type.includes('noImage')
+      div
+    else
+      a(href=BLOGS.POST_STANDARD).card__cover
+        img(src=imgSource, alt=title)
+    if !type.includes('onlyCover')
+      .card__content
+        h5.card__content-category= category
+        a(href=BLOGS.POST_STANDARD).card__content-title= title
+        if !type.includes("noInfo")
+          .card__content-info
+            if type.includes("full") &&  !type.includes("noAuthor") || type.includes('fillInfo')
+              .info__time.info__author
+                i.far.fa-user
+                p Jessica Stephens
+            .info__time
+              i.far.fa-clock
+              p= time
+            if !type.includes("tiny")
+              .info__comment
+                i.far.fa-comment
+                p= comment
+        if type.includes("full")
+          p.card__content-description Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt labore aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.
+          if !type.includes('noBtn')
+            a.more-btn(href=BLOGS.POST_STANDARD) Read more 

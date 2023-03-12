@@ -1,0 +1,123 @@
+extends base/layout.pug
+block title
+  title Homepage 8
+block header
+  - var page = 'home'
+  - var theme = 'yellow'
+  - var noContentPadding = true
+  include components/header.pug
+block content
+  .blog-food
+    .container-full
+      .blog-food__slide__wrapper
+        .blog-food__slide
+          each post, index in POST_DATA_REGULAR.slice(0,6)
+            .blog-food__slide__item
+              +post_card_default(`assets/images/posts/food/slide/${index + 1}.png`, post.category, post.title, post.date, post.comment, '-inner-text', 'noAuthor')
+    .container
+      .blog-section.blog-food__section.-trending
+        .row
+          .col-12.col-md-5.col-lg-4.order-md-2
+            .blog-sidebar
+              .blog-sidebar-section.-trending-post
+                .center-line-title 
+                  h5 Editor’s picks
+                each post in TOP_POST
+                  +trending_post(post.title, post.category, post.image, post.date, post.rank)
+          .col-12.col-md-7.col-lg-8.order-md-1
+            .news-block
+              +news_block_header(['all', 'recipes', 'vegan', 'desserts', 'drinks'], 'Trending')
+              .news-block__tab
+                each item in ['all', 'recipes', 'vegan', 'desserts', 'drinks']
+                  div(data-tab-name=item class=(item === 'all' ? 'active news-block__tab__item' : 'news-block__tab__item'))
+                    .news-block__content.-default
+                      each item, index in [1, 2, 3]
+                        .news-block__content__slide
+                          .row
+                            .col-12
+                              each post in POST_DATA_REGULAR.slice(0, 1)
+                                +post_card_default('./assets/images/posts/food/trending/big.png', post.category, post.title, post.date, post.comment, '-large')
+                            .col-12
+                              .row
+                                - let a = 1
+                                each post in POST_DATA_REGULAR.slice(1 + index, 3 + index)
+                                  .col-12.col-sm-6
+                                    +post_card_default(`./assets/images/posts/food/trending/${a++}.png`, post.category, post.title, post.date, post.comment, '-small')
+    .blog-section.blog-food__section.-video
+      .container
+        .news-block
+          +news_block_header([], 'Latest videos')
+          .news-block__tab
+            each item in ['all']
+              div(data-tab-name=item class=(item === 'all' ? 'active news-block__tab__item' : 'news-block__tab__item'))
+                .news-block__content.-default
+                  each item, index in [1, 2, 3]
+                    .news-block__content__slide
+                      .row.no-gutters
+                        .col-12.col-lg-6
+                          .video-container.-big
+                            a(href=BLOGS.POST_STANDARD) Texas Restaurant has a Deepika Padukone Dosa, and Ranveer Singh is Loving it!
+                            .video.plyr__video-embed
+                              iframe(src='https://player.vimeo.com/video/25323516', allowfullscreen='')
+                        .col-12.col-lg-6
+                          .row.no-gutters
+                            each video in VIDEO_LIST.slice(0 + index, 4 + index)
+                              .col-12.col-sm-6
+                                .video-container.-small
+                                  a(href=BLOGS.POST_STANDARD)= video.title
+                                  .video.-small.plyr__video-embed
+                                    iframe(src=`https://player.vimeo.com/video/${video.src}`, style="position:absolute;top:0;left:0;width:100%;height:100%;", allowfullscreen='')
+    .container
+      .blog-section.blog-food__section
+        .row
+          .col-12.col-md-5.col-lg-4.order-md-2
+            .blog-sidebar
+              .blog-sidebar-section.-category
+                .center-line-title 
+                  h5 Social media
+              .blog-sidebar-section.-category
+                .center-line-title 
+                  h5 Categories
+                .category-block
+                  - let a = 1
+                  each category in CATEGORIES.slice(0,4)
+                    +category(category.title, category.quantity, `./assets/images/backgrounds/food/${a++}.png`, '-square')
+              include components/subcribe_box.pug
+          .col-12.col-md-7.col-lg-8.order-md-1
+            .news-block
+              +news_block_header(['all', 'recipes', 'vegan', 'desserts', 'drinks'], 'Destination')
+              .news-block__tab
+                each item in ['all', 'recipes', 'vegan', 'desserts', 'drinks']
+                  div(data-tab-name=item class=(item === 'all' ? 'active news-block__tab__item' : 'news-block__tab__item'))
+                    .news-block__content.-default
+                      each item, index in [1, 2, 3]
+                        .news-block__content__slide
+                          .row
+                            .col-12
+                              .row
+                                - let a = 1
+                                each post in POST_DATA_REGULAR.slice(8, 10)
+                                  .col-12.col-sm-6
+                                    +post_card_default(`assets/images/posts/food/feature/big-${a++}.png`, post.category, post.title, post.date, post.comment)
+                            .col-12
+                              .row
+                                - let b = 1
+                                each post in POST_DATA_REGULAR.slice(1 + index, 4 + index)
+                                  .col-12.col-sm-6.col-lg-4
+                                    +post_card_default(`assets/images/posts/food/feature/${b++}.png`, post.category, post.title, post.date, post.comment, '-small')
+            .blog-section.blog-food__section.-lastest-post
+              .news-block
+                +news_block_header(['all', 'recipes', 'vegan', 'desserts', 'drinks'], 'Latest posts')
+                .news-block__tab
+                  each item in ['all', 'recipes', 'vegan', 'desserts', 'drinks']
+                    div(data-tab-name=item class=(item === 'all' ? 'active news-block__tab__item' : 'news-block__tab__item'))
+                      .news-block__content.-default
+                        each item, index in [1, 2, 3]
+                          .news-block__content__slide
+                            - let a = 1
+                            each post in POST_DATA_REGULAR.slice(0, 4)
+                              +post_card_default(`assets/images/posts/food/lastest/${a ++}.png`, post.category, post.title, post.date, post.comment, '-small -horizontal', 'full-noBtn-noAuthor')
+        +pagination(4, 1)
+  include components/instagrams.pug
+block footer
+  include components/footer.pug

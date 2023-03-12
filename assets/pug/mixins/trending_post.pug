@@ -1,0 +1,12 @@
+include ../base/variable.pug
+mixin trending_post(title, category, image, date, rank)
+  .trending-post
+    .trending-post_image
+      .rank= rank
+      img(src=image, alt=title)
+    .trending-post_content
+      h5= category
+      a(href=BLOGS.POST_STANDARD)= title
+      .info__time
+        i.far.fa-clock
+        p= date

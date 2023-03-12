@@ -1,0 +1,61 @@
+extends base/layout.pug
+block title
+  title Shop
+block header
+  - var page = 'pages'
+  - var noContentPadding = true
+  include components/header.pug
+block content
+  .container
+    +breadcrumb(["Feature", "Shop"])
+    .shop
+      .row
+        .col-12.col-md-4.col-lg-3
+          .shop__filter-sibebar
+            .shop__filter-sibebar__section.-price
+              .center-line-title.-medium
+                h5 Price
+              form(action="/")
+                .range-input
+                  label $
+                  input(type="text")
+                span
+                  i.far.fa-angle-double-right
+                .range-input
+                  label $
+                  input(type="text")
+            .shop__filter-sibebar__section.-color
+              .center-line-title.-medium
+                h5 Colors
+              each item in ['black', 'white', 'gray', 'red', 'blue', 'green', 'yellow']
+                label.checkbox-group.customed.-round= item
+                  input(type="checkbox" id=item name=item value=item)
+                  span.checkmark
+        .col-12.col-md-8.col-lg-9
+          .shop__products
+            .shop__products__header
+              h5
+                span 50
+                | Product found
+              .product-filter
+                .select-group
+                  span Sort by:
+                  select#sort(name="sort")
+                    each option in ['Default','Price: Low to Hight', 'Price: High to Low', 'Alphabet: A to Z', 'Alphabet: Z to A']
+                      option(value=option)= option
+                .select-group
+                  span Show:
+                  select#show(name="show")
+                    each option in [5, 15, 25]
+                      option(value=option)= option
+            .shop__products__content
+              .row
+                each product in PRODUCTS
+                  .col-12.col-sm-6.col-lg-4
+                    + product(product.name, product.image, product.star, product.price)
+            .center
+              a.btn.-normal.load-more-btn(href="#") Load more posts
+  .container
+    include components/instagrams.pug 
+block footer
+  include components/footer.pug

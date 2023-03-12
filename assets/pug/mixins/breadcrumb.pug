@@ -1,0 +1,14 @@
+mixin breadcrumb(items)
+  .breadcrumb
+    ul
+      li
+        a(href="index.html") 
+          i.fas.fa-home
+          |Home
+      each item, index in items
+        if index === items.length - 1
+          li.active
+            a(href="#")= item
+        else
+          li
+            a(href="#")= item

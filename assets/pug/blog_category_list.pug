@@ -1,0 +1,29 @@
+extends base/layout.pug
+block title
+  title Blog Category List
+block header
+  - var page = 'blog'
+  - var noContentPadding = true
+  include components/header.pug
+block content
+  .container
+    +breadcrumb(["Blog", "Category"])
+    .category
+      .row
+        .col-12.col-md-5.col-lg-4.order-md-2
+          include ./components/blog_sidebar.pug
+        .col-12.col-md-7.col-lg-8.order-md-1
+          .category__header
+            .category__header__text
+              h5 Categories:
+              a(href="#") Typography
+            .category__header__filter
+              a.category__header__filter__item(href="javascript:void(0)" data-layout="grid")
+                i.fas.fa-th
+              a.category__header__filter__item.active(href="javascript:void(0)" data-layout="list")
+                i.fas.fa-bars
+          .category_content
+          +pagination(4, 1)
+    include components/instagrams.pug 
+block footer
+  include components/footer.pug

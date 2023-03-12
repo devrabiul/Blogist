@@ -1,0 +1,20 @@
+extends base/layout.pug
+block title
+	title Homepage 1
+block header
+	- var page = 'home'
+	include components/header.pug
+block content
+	.container
+		.blog-masonry
+			each post in POST_DATA_REGULAR.slice(0,4)
+				+post_card_default(post.image, post.category, post.title, post.date, post.comment, '-center')
+			each post in POST_DATA_SLIDE.slice(0,1)
+				+post_card_default(post.image, post.category, post.title, post.date, post.comment, '-center', 'slide')
+			each post in POST_DATA_REGULAR.slice(5,9)
+				+post_card_default(post.image, post.category, post.title, post.date, post.comment, '-center')
+		.center
+			a.btn.-normal.load-more-btn(href="#") Load more posts
+		include components/instagrams.pug
+block footer
+	include components/footer.pug

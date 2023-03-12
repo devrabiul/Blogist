@@ -1,0 +1,119 @@
+extends base/layout.pug
+block title
+  title Checkout
+block header
+  - var page = 'pages'
+  - var noContentPadding = true
+  include components/header.pug
+block content
+  .container
+    +breadcrumb(["Blog", "Checkout"])
+    .checkout
+      a(href="#").checkout__coupon-alert Have a coupon? Click here to enter your code.
+      .row
+        .col-12.col-md-7.col-lg-8
+          .checkout__form
+            h3.checkout-title BILLING DETAIL
+            form(action="/" method="POST")
+              .row
+                .col-12.col-sm-6
+                  .input-group
+                    label First name
+                    input(type="text" name="first-name")
+                .col-12.col-sm-6
+                  .input-group
+                    label Last name
+                    input(type="text" name="last-name")
+              .input-group
+                label First Country
+                input(type="text" name="country")
+              .input-group
+                label Address
+                input.mb-20(type="text" name="address" placeholder="Street Address")
+                input(type="text" name="address" placeholder="Apartment. suite, unite ect ( optinal )")
+              .input-group
+                label Town/City
+                input(type="text" name="city")
+              .input-group
+                label Country/State
+                input(type="text" name="state")
+              .input-group
+                label Postcode/ZIP
+                input(type="text" name="zip")
+              .row
+                .col-12.col-sm-6
+                  .input-group
+                    label Phone
+                    input(type="text" name="Phone")
+                .col-12.col-sm-6
+                  .input-group
+                    label Email
+                    input(type="text" name="Email")
+              label.checkbox-group.customed.mb-15
+                | Create an acount?
+                input(type="checkbox" id='create-acc' name='create-acc' value='create-acc')
+                span.checkmark
+              p.label-description Create am acount by entering the information below. If you are a returing customer login at the top of the page
+              .input-group.mb-15
+                label Acc Password
+                input(type="text" name="password")
+              label.checkbox-group.customed
+                |Note about your order, e.g, special noe for delivery
+                input(type="checkbox" id='note' name='note' value='note')
+                span.checkmark
+              .input-group
+                label Order notes
+                input(type="text" name="order-note" placeholder="Note about your order, e.g, special noe for delivery")
+        .col-12.col-md-5.col-lg-4
+          .checkout__total
+            h3.checkout-title Your order
+            table.total__provisional
+              colgroup
+                col(style='width: 70%')
+                col(style='width: 30%')
+              thead
+                tr
+                  th Product
+                  th Total
+              tbody
+                each data, index in [{name: 'Chain buck bag', price: '300'}, {name: 'Zip-pockets pebbled tote briefcase', price: '170'},{name: 'Black jean', price: '170'}, {name: 'Cotton shirt', price: '170'}]
+                  tr
+                    td
+                      span= `0${index+1}.`
+                      p= data.name
+                    td= `$ ${data.price}`
+            table.total__final
+              colgroup
+                col(style='width: 70%')
+                col(style='width: 30%')
+              tbody
+                tr
+                  td Subtotal
+                  td $ 750
+                tr
+                  td Total
+                  td $ 750
+            .total__payment-method
+              .total__payment-method__block
+                label.checkbox-group.customed
+                  |Create an account ?
+                  input(type="checkbox" id='pay-create-acc' name='pay-create-acc' value='pay-create-acc' checked)
+                  span.checkmark
+                p.payment__content Create am acount by entering the inform ation below. If you are a returing customer login at the top of the page.
+              .total__payment-method__block
+                label.checkbox-group.customed
+                  |Cheque payment
+                  input(type="checkbox" id='pay-cheque' name='pay-cheque' value='pay-cheque')
+                  span.checkmark
+                p.payment__content Create am acount by entering the inform ation below. If you are a returing customer login at the top of the page.
+              .total__payment-method__block
+                label.checkbox-group.customed
+                  |Paypal
+                  input(type="checkbox" id='pay-paypal' name='pay-paypal' value='pay-paypal' )
+                  span.checkmark
+                p.payment__content Create am acount by entering the inform ation below. If you are a returing customer login at the top of the page.
+              a(href="#").btn PLACE ODER
+  .container
+    include components/instagrams.pug 
+block footer
+  include components/footer.pug

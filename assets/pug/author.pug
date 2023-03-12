@@ -1,0 +1,45 @@
+extends base/layout.pug
+block title
+  title Author
+block header
+  - var page = 'pages'
+  - var noContentPadding = true
+  include components/header.pug
+block content
+  .container
+    +breadcrumb(["Feature", "Author"])
+    .author-info-block
+      .author-info-block__avatar
+        img(src="assets/images/post_detail/author.png", alt="Author avatar")
+      .author-info-block__info
+        h5 Lena Mollein
+        p Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse vel facilisis. 
+        .social-media
+          a(href="#")
+            i.fab.fa-facebook-f
+          a(href="#")
+            i.fab.fa-twitter
+          a(href="#")
+            i.fab.fa-instagram
+          a(href="#")
+            i.fab.fa-dribbble
+    .category
+      .row
+        .col-12.col-md-5.col-lg-4.order-md-2
+          include ./components/blog_sidebar.pug
+        .col-12.col-md-7.col-lg-8.order-md-1
+          .category__header
+            .category__header__text
+              h5 Categories:
+              a(href="#") Typography
+            .category__header__filter
+              a.category__header__filter__item(href="javascript:void(0)" data-layout="grid")
+                i.fas.fa-th
+              a.category__header__filter__item.active(href="javascript:void(0)" data-layout="list")
+                i.fas.fa-bars
+          .category_content
+          +pagination(4, 1)
+  .container
+    include components/instagrams.pug 
+block footer
+  include components/footer.pug

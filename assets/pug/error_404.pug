@@ -1,0 +1,28 @@
+extends base/layout.pug
+block title
+  title 404 Error
+block header
+  - var page = 'pages'
+  - var noContentPadding = true
+  include components/header.pug
+block content
+  .container
+    +breadcrumb(["Blog", "404 error"])
+    .error-404
+      .row.align-items-center
+        .col-12.col-md-6
+          .error-404__content
+            h2 404 Not Found
+            p It looks like nothing was found at this location. Maybe try a search?
+            form(action="/")
+              input(type="text", name="keyword", placeholder="Enter keyword")
+              button
+                i.far.fa-search
+            a(href="index.html").btn Go back to home
+        .col-12.col-md-6
+          .error-404__image
+            img(src="assets/images/pages/404.png", alt="404 error image")
+  .container
+    include components/instagrams.pug 
+block footer
+  include components/footer.pug

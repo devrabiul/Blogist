@@ -1,0 +1,98 @@
+extends base/layout.pug
+block title
+  title Homepage 7
+block header
+  - var page = 'home'
+  - var noContentPadding = true
+  - var theme = 'blue'
+  include components/header.pug
+block content
+  .blog-ocean
+    .container-max.no-gutter
+      .blog-ocean__slider
+        .blog-ocean__slider__item
+          .slider-item__image
+            img(src="assets/images/backgrounds/slider-bg-1.png", alt="1")
+          .slider-item__content
+            each post in POST_DATA_REGULAR.slice(0,1)
+              +post_card_default(post.image, post.category, post.title, post.date, post.comment, '-center -theme--blue', 'noImage')
+        .blog-ocean__slider__item
+          .slider-item__image
+            img(src="assets/images/backgrounds/slider-bg-2.png", alt="1")
+          .slider-item__content
+            each post in POST_DATA_REGULAR.slice(1,2)
+              +post_card_default(post.image, post.category, post.title, post.date, post.comment, '-center -theme--blue', 'noImage')
+    .container
+      .blog-ocean__content
+        .news-block.-theme--blue
+          +news_block_header(['all', 'american', 'asian', 'africa'], 'Destination')
+          .news-block__tab
+            each item in ['all', 'american', 'asian', 'africa']
+              div(data-tab-name=item class=(item === 'all' ? 'active news-block__tab__item' : 'news-block__tab__item'))
+                .news-block__content.-default
+                  each item, index in [1, 2, 3]
+                    .news-block__content__slide
+                      .row
+                        .col-12.col-lg-6
+                          each post in POST_DATA_REGULAR.slice(0, 1)
+                            +post_card_default('./assets/images/posts/sea/destination/big.png', post.category, post.title, post.date, post.comment, '-theme--blue -large', 'full-noBtn')
+                        .col-12.col-lg-6
+                          .row
+                            - let a = 1
+                            each post in POST_DATA_REGULAR.slice(1 + index, 5 + index)
+                              .col-12.col-sm-6.col-md-4.col-lg-6
+                                +post_card_default(`./assets/images/posts/sea/destination/${a++}.png`, post.category, post.title, post.date, post.comment, '-theme--blue -small')
+        .video-block
+          .row.no-gutters
+            .col-12.col-md-8
+              .video-view
+                h2#video-list__title Looking for Music & Sounds for my new Android
+                #video-list-player.plyr__video-embed.-theme--blue
+                  iframe(src='https://player.vimeo.com/video/25323516', allowfullscreen='')
+            .col-12.col-md-4
+              .video-list
+                .video-list__header
+                  h5 Feature video
+                  p 2/8 video
+                .video-list__content
+                  each video, index in VIDEO_LIST.slice(0,4)
+                    a(href="#" data-src=video.src class=(index === 0 ? 'video-list__content__item active' : 'video-list__content__item'))
+                      .item__image
+                        img(src=`assets/images/posts/sea/video/${index+1}.png`, alt=video.title)
+                      .item__detail
+                        h5= video.title
+                        p= video.time
+        .news-block.-theme--blue
+          +news_block_header(['all', 'flight', 'hotel & resort', 'food', 'cultural'], 'Travel guides')
+          .news-block__tab
+            each item in ['all', 'flight', 'hotel & resort', 'food', 'cultural']
+              div(data-tab-name=item class=(item === 'all' ? 'active news-block__tab__item' : 'news-block__tab__item'))
+                .news-block__content.-hoz
+                  each item, index in [1, 2, 3]
+                    .news-block__content__slide
+                      .row
+                        .col-12
+                          each post in POST_DATA_REGULAR.slice(0, 1)
+                            +post_card_default(`./assets/images/posts/sea/travel/big.png`, post.category, post.title, post.date, post.comment, '-theme--blue -large -horizontal -large', 'full')
+                        .col-12
+                          .row
+                            - let a = 1
+                            each post in POST_DATA_REGULAR.slice(1 + index, 4 + index)
+                              .col-12.col-sm-6.col-md-4
+                                +post_card_default(`./assets/images/posts/sea/travel/${a++}.png`, post.category, post.title, post.date, post.comment, '-theme--blue -small')
+        .news-block.-theme--blue
+          +news_block_header(['all', 'destination', 'guides', 'stories'], 'Latest posts')
+          .news-block__tab
+            each item in ['all', 'destination', 'guides', 'stories']
+              div(data-tab-name=item class=(item === 'all' ? 'active news-block__tab__item' : 'news-block__tab__item'))
+                .news-block__content.-hoz-small
+                  each item, index in [1, 2, 3]
+                    .news-block__content__slide
+                      .row
+                        - let a = 1
+                        each post in POST_DATA_REGULAR.slice(0 + index, 6 + index)
+                          .col-12.col-md-6
+                            +post_card_default(`./assets/images/posts/sea/lastest/${a++}.png`, post.category, post.title, post.date, post.comment, '-theme--blue -small -horizontal', 'full-noBtn-noAuthor')
+    include components/instagrams.pug
+block footer
+  include components/footer.pug

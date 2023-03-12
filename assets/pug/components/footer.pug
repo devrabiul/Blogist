@@ -1,0 +1,53 @@
+include ../base/variable.pug
+include ../mixins/tag.pug
+include ../mixins/post_card_default.pug
+footer
+  .container
+    .footer-content
+      .row
+        .col-12.col-md-6.col-lg-4
+          .footer-col.-about
+            .center-line-title  
+              h5 About us
+            p Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida lacus vel facilisis. 
+            .contact-method
+              p 
+                i.fas.fa-map-marker-alt
+                |5 South Main Street Los Angeles, ZZ-96110 USA
+              p 
+                i.far.fa-mobile-android
+                |125-711-811   |   125-668-886
+              p 
+                i.fas.fa-headphones-alt
+                |Support.hosting@gmail.com
+        .col-12.col-md-6.col-lg-4
+          .footer-col.-feature-post
+            .center-line-title  
+              h5 Feature posts
+            .feature-post-block
+              each post in POST_DATA_REGULAR.slice(0,3)
+                +post_card_default(post.image, post.category, post.title, post.date, post.comment, '-tiny', 'tiny')
+        .col-12.col-md-12.col-lg-4
+          .footer-col.-util
+            .row
+              .col-12.col-md-6.col-lg-12
+                .center-line-title 
+                  h5 Tag clouds
+                .tags-group
+                  each tag in ['Gutenews', 'Lifestyle', 'Fashion', 'Technology', 'Food', 'Travel']
+                    +tag(tag)
+              .col-12.col-md-6.col-lg-12
+                .center-line-title  
+                  h5 Follow us
+                .social-block
+                  a(href="#")
+                    i.fab.fa-facebook-f
+                  a(href="#")
+                    i.fab.fa-twitter
+                  a(href="#")
+                    i.fab.fa-instagram
+                  a(href="#")
+                    i.fab.fa-dribbble
+    .copyright
+      p © 2019, GuteNews - News Magazine WordPress Theme. All rights reserved.
+        

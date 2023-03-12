@@ -1,0 +1,23 @@
+extends base/layout.pug
+block title
+  title Homepage 5
+block header
+  - var page = 'home'
+  include components/header.pug
+block content
+  .blog-imageless-mansonry.-wide
+    .container
+      .blog-imageless-mansonry__categories
+        each category in CATEGORIES.slice(4,9)
+          +category(category.title, category.quantity, category.bg, '-round')
+    .container-max
+      .blog-imageless-mansonry__content__wide
+        .grid-sizer
+        each post in POST_MANSONRY_IMAGELESS_WIDE
+          div(class=`grid-item ${post.isLarge ? '-large' : post.isBig ? '-big' : post.isLong ? '-long' : '-small'}`)
+            +post_card_default(post.image, post.category, post.title, post.date, post.comment, `-center -middle -inner-text`)
+    .container
+      .center
+        a.btn.-normal.load-more-btn(href="#") Load more posts
+block footer
+  include components/footer.pug
