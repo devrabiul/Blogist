@@ -4,7 +4,7 @@
 $posts = mysqli_query($dbCon, "SELECT * FROM `posts`");
 foreach ($posts as $post) { ?>
 
-<div class="post-card -center"><a class="card__cover" href="post_standard.php"><img src="/blogist/dashboard/posts/uploads/<?=$post['post_thumbnail']?>"
+<div class="post-card -center"><a class="card__cover" href="post_standard.php"><img src="<?=$systemBaseURL?>/dashboard/posts/uploads/<?=$post['post_thumbnail']?>"
             alt="Looking for some feedback for this rejected track" /></a>
     <div class="card__content">
         <h5 class="card__content-category"><?=$post['post_catagory']?></h5><a class="card__content-title"

@@ -6,6 +6,7 @@ $cPage = end($explode_url);
 
 ?>
 
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -46,7 +47,7 @@ $cPage = end($explode_url);
       ?>
         <div class="header-wrapper">
           <a class="header__logo" href="index.php">
-            <img src="/blogist/dashboard/uploads/settings/<?=$logoAssoc['logo']?>" alt="<?=$logoAssoc['logo']?>"/>
+            <img src="<?=$systemBaseURL?>/dashboard/uploads/settings/<?=$logoAssoc['logo']?>" alt="<?=$logoAssoc['logo']?>"/>
           </a>
           <nav>
             <ul>
